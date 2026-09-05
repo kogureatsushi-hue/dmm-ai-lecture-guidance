@@ -2,294 +2,151 @@
 
 ## この文書について
 
-この文書は、講座概要作成SkillをCodex CLIまたはCodex IDE拡張で使用する手順をまとめたものです。
+公開GitHubリポジトリから「講座概要作成」Skillを導入し、Codex CLI、IDE拡張、またはChatGPTデスクトップアプリのCodexで使用する手順です。本プロジェクトでは、この方法を標準の利用方法とします。
 
-Skillの表示名は「講座概要作成」、Skill IDは`course-overview-generator`です。
-
-共有元：`https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance`
-
-## 想定する利用者
-
-- GitHubのPrivateリポジトリを閲覧できる人
-- Codex CLIまたはCodex IDE拡張を利用できる人
-- Git、ファイル操作、Markdownの確認ができる人
-- 必要に応じてGoogle Driveから資料をダウンロードできる人
-
-## ChatGPT Work版との違い
-
-| 項目 | ChatGPT Work | ローカルCodex |
-|---|---|---|
-| Skillの配布 | 管理者がGitHubのマーケットプレイスを読み込む | リポジトリからSkillをインストールまたは参照する |
-| 入力ファイル | チャット添付またはDriveリンク | ローカルファイルまたは利用可能な連携先 |
-| 中間成果物 | チャット上のMDと一時ファイル | 作業ディレクトリ内のMD |
-| DOCX | Work環境内で生成 | ローカルスクリプトまたは文書作成機能で生成 |
-| Drive保存 | 接続済みプラグインから保存 | Drive連携がなければ手動アップロード |
+- リポジトリ：`https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance`
+- Skill ID：`course-overview-generator`
+- Skillの場所：`plugins/dmm-business-ai-course-overview/skills/course-overview-generator`
 
 ## 事前準備
 
-### 必要なもの
+- Codex CLI、対応するIDE拡張、またはChatGPTデスクトップアプリを利用できること
+- GitHubへアクセスできること
+- 講座資料PDFとワーク使用ファイルを閲覧できること
+- DOCXを作成する場合は、成果物を保存できる作業フォルダがあること
 
-- Codex CLIまたはCodex IDE拡張
-- Git
-- Privateリポジトリへのアクセス権
-- 講座資料PDF
-- ワーク使用ファイル一式、または閲覧可能なGoogle Driveフォルダ
-- DOCXの保存先
+Publicリポジトリのため、GitHubアカウントへの招待は不要です。Skillを利用するだけなら、リポジトリへの書き込み権限も必要ありません。
 
-同梱スクリプトは講座概要MDの必須見出しと時間合計を検証するもので、Python 3を使用します。DOCX生成は、利用環境の文書作成機能を使用します。
+## 推奨：Skill Installerで導入する
 
-## GitHubアクセスからSkill有効化まで
+### 1. インストールを依頼する
 
-本運用では、利用者全員にPrivateリポジトリの閲覧権限を付与します。ローカルCodexの利用者は、次の手順でGitHubへのアクセスからSkillの有効化までを進めます。
+Codexで次の内容を実行します。
 
-| 手順 | 内容 | 完了条件 |
-|---:|---|---|
-| 1 | リポジトリ管理者から届いたGitHub招待を承認する | 対象リポジトリをブラウザで開ける |
-| 2 | READMEと利用手順を確認する | 対象バージョンと前提条件を把握した |
-| 3 | リポジトリをcloneする | ローカルにリポジトリが作成された |
-| 4 | Skill Installer、リンク、コピーのいずれかでSkillを導入する | SkillフォルダをCodexが参照できる |
-| 5 | Codexを起動または再起動する | 最新のSkill情報を読み込んだ |
-| 6 | Skill一覧を確認する | course-overview-generatorが表示される |
-| 7 | 動作確認用プロンプトを実行する | 必要な入力情報が提示される |
+~~~text
+$skill-installer を使って、次の公開リポジトリからSkillをインストールしてください。
+https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance/tree/main/plugins/dmm-business-ai-course-overview/skills/course-overview-generator
+~~~
 
-### 1. GitHubの招待を承認する
+### 2. Skillを確認する
 
-GitHubから届いたリポジトリ招待を、自分のGitHubアカウントで承認します。共有されたリポジトリURLをブラウザで開き、READMEと「docs」フォルダを閲覧できることを確認してください。
+インストール完了後、次のターンで利用できます。Codex CLIまたはIDE拡張では`/skills`を実行するか、入力欄で`$course-overview-generator`を検索します。
 
-リポジトリを開いたときに404などが表示される場合は、次を確認します。
+表示されない場合はCodexを再起動し、再度確認してください。
 
-- 招待を受けたGitHubアカウントでログインしているか
-- 招待の承認が完了しているか
-- Organization側の追加承認が必要か
-- リポジトリURLが正しいか
+### 3. 動作確認をする
 
-### 2. リポジトリを取得する
+~~~text
+$course-overview-generator を使って、講座概要作成の開始前チェックをしてください。
+まだファイルは作成せず、必要な入力情報だけを一覧で示してください。
+~~~
 
-継続的に利用する場合は、更新を取得しやすいGitでのcloneを推奨します。
+講座資料、ワーク使用ファイル、講座時間、出力先などが提示されれば導入確認は完了です。
+
+## 更新担当者：リポジトリをcloneする
+
+Skillや手順書を変更する担当者は、リポジトリをcloneします。
 
 ~~~bash
 git clone https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance.git
 cd dmm-ai-lecture-guidance
 ~~~
 
-SSHを使用しない場合は、GitHub上に表示されるHTTPSのclone URLを使用します。
+変更はmainへ直接行わず、作業ブランチとPull Requestを使用してください。Skillを実際の利用環境へ導入するときは、前項のSkill Installerを使用します。
 
-Gitを使わない場合は、「Code」からZIPをダウンロードして展開できます。ただし、更新時は新版を再度ダウンロードする必要があります。
+## 入力ファイルを準備する
 
-### 3. Skillを導入する
-
-後述の「Skillの入手方法」から、利用環境に合う方法を1つ選びます。初めて利用する人はSkill Installer、リポジトリを継続更新する人はcloneしたフォルダへのシンボリックリンクを推奨します。
-
-### 4. 有効化を確認する
-
-Codexを起動または再起動し、「/skills」または「$」からSkill一覧を確認します。course-overview-generatorが表示されたら、次の確認用プロンプトを実行します。
+Google Drive連携を使用しない場合は、講座ごとに作業フォルダを分けます。
 
 ~~~text
-$course-overview-generator
-
-講座概要作成の開始前チェックをしてください。
-まだファイルの作成や保存は行わず、必要な入力情報だけを一覧で示してください。
+＜講座名＞/
+├ input/
+│  ├ course.pdf
+│  └ work-files/
+└ output/
 ~~~
 
-必要なPDF、ワーク使用ファイル、出力先、講座時間などが提示されれば、有効化確認は完了です。
+- `input`には、その講座で使用するPDFとワークファイルだけを置きます。
+- `output`には作業プレビューMDと、承認後のDOCXを保存します。
+- 別講座の入力ファイルや古い版を同じフォルダへ混在させないでください。
+- 顧客情報、個人情報、APIキーなどを公開リポジトリへコミットしないでください。
 
-### 5. 自力で解決できない場合
+## 講座概要を作成する
 
-管理者とのリアルタイム連携を前提にしないため、まずREADMEの導入状況、既知の問題、対象バージョンを確認します。解決しない場合は、GitHubのIssueなど、リポジトリで指定された問い合わせ方法を利用します。
-
-問い合わせには次を含めます。
-
-- 使用環境：Codex CLIまたはIDE拡張
-- OS
-- リポジトリのバージョンまたはコミット
-- 実施した導入方法
-- Skill一覧に表示されるか
-- エラーメッセージ
-- すでに試した対応
-
-## Skillの入手方法
-
-### 方法A：Skill Installerを使用する
-
-Codexでは「$skill-installer」を呼び出し、GitHubリポジトリ内のSkillを指定してインストールできます。Privateリポジトリの場合は、ローカル環境でGitHubへアクセスできる状態にしておきます。
+講座の作業フォルダでCodexを開き、次のように依頼します。
 
 ~~~text
-$skill-installer
+$course-overview-generator を使って、講師共有用の講座概要を作成してください。
 
-次のGitHubリポジトリにあるcourse-overview-generator Skillをインストールしてください。
-リポジトリ：https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance
-Skillの場所：plugins/dmm-business-ai-course-overview/skills/course-overview-generator
+講座資料：input/course.pdf
+ワーク使用ファイル：input/work-files
+講座時間：3時間（休憩10分×2回）
+出力先：output
+
+最初にMarkdownで作業プレビューを作成し、私の確認が終わるまでDOCXへ変換しないでください。
+不明な演習時間や講座固有の条件は、推測せず質問してください。
 ~~~
 
-インストール後にSkillが表示されない場合は、Codexを再起動します。
+Google Drive連携が利用できる場合は、ローカルパスの代わりに閲覧可能なフォルダURLと保存先URLを指定できます。
 
-### 方法B：リポジトリをクローンして配置する
+## 確認の流れ
+
+1. CodexがPDFとワーク使用ファイルを確認する。
+2. 不足資料や不明な演習時間について質問する。
+3. 作業プレビューMDを作成する。
+4. 利用者が内容、時間、注意点を確認して修正を依頼する。
+5. 利用者が明示的に承認する。
+6. CodexがDOCXを作成し、レイアウトを確認する。
+7. 指定のローカルフォルダまたはGoogle Driveへ保存する。
+
+MDでは、少なくとも次を確認してください。
+
+- 「講座の概要」「章構成」「タイムテーブル」「ポイント」「注意点」がある。
+- 演習とハンズオンが区別されている。
+- 演習名と受講生の実施時間が内容列にある。
+- 講座時間、休憩、各区分の合計が一致している。
+- PDFやワークファイルにない情報を事実として追加していない。
+- 講師が事前に伝える内容と進行上の注意が具体的である。
+
+## Skillを更新する
+
+Skill Installerで導入した利用者は、`CHANGELOG.md`で更新内容を確認してから最新版を再導入します。既存のSkillがあるため再導入できない場合は、Codexが案内するインストール先を確認し、`course-overview-generator`だけを更新してください。ほかのSkillや設定は削除しないでください。
+
+cloneしている更新担当者は、次のコマンドで最新版を取得します。
 
 ~~~bash
-git clone https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance.git
-cd dmm-ai-lecture-guidance
-~~~
-
-Skillフォルダをユーザー用Skillディレクトリへコピーするか、シンボリックリンクを作成します。
-
-~~~bash
-mkdir -p ~/.agents/skills
-ln -s "$(pwd)/plugins/dmm-business-ai-course-overview/skills/course-overview-generator" ~/.agents/skills/course-overview-generator
-~~~
-
-同名のファイルまたはフォルダが既にある場合、上記のリンク作成は実行せず、既存Skillの入手元とバージョンを確認してください。
-
-### 方法C：リポジトリ内だけで使用する
-
-プロジェクト固有のSkillとして使う場合は、リポジトリの「.agents/skills」配下へSkillを配置します。Codexは、現在の作業ディレクトリからリポジトリルートまでの「.agents/skills」を確認します。
-
-正式なリポジトリ構成では、ChatGPT Work向けプラグインのSkillとローカル用Skillの二重管理が起きないよう、コピーまたはパッケージ処理を自動化します。
-
-## 入力ファイルの準備
-
-Google Drive連携を使用しない場合は、次のように講座単位で作業フォルダを分けます。
-
-~~~text
-work/
-└ <course-name>/
-   ├ input/
-   │  ├ course.pdf
-   │  └ work-files/
-   └ output/
-~~~
-
-### ファイル準備のルール
-
-- PDFは最新版だけを「input」に置く。
-- 旧版を残す場合は「OLD」フォルダへ分ける。
-- ワーク使用ファイルは、Drive上のフォルダ構成をできるだけ維持する。
-- パスワード、APIキー、個人情報を含むファイルはリポジトリへコミットしない。
-- 講座資料やワークファイルをGit管理する場合は、社内ルールと利用権限を確認する。
-
-## 基本的な使い方
-
-### 1. 講座の作業フォルダでCodexを起動する
-
-~~~bash
-cd work/<course-name>
-codex
-~~~
-
-IDE拡張を使う場合は、同じフォルダをワークスペースとして開きます。
-
-### 2. Skillを明示して依頼する
-
-Codex CLIまたはIDE拡張では、「$」でSkillを指定できます。
-
-~~~text
-$course-overview-generator
-
-input/course.pdfとinput/work-filesの内容をもとに、講師共有用の講座概要を作成してください。
-講座時間は3時間です。
-最初にoutputへMarkdownの作業プレビューを作成してください。
-私が承認するまでDOCXを作成しないでください。
-資料から確定できない演習時間は質問してください。
-~~~
-
-Google Drive連携が利用できる場合は、ローカルの「input/work-files」の代わりにフォルダURLを指定できます。
-
-### 3. 読み取り結果と質問を確認する
-
-CodexがPDF、ワークファイル、既存のファイル名を確認し、章構成と演習候補を整理します。次のような未確定事項があれば、MD完成前またはDOCX化前に回答します。
-
-- 講座全体の時間
-- 休憩回数と時間
-- 受講生が操作する演習の名称と時間
-- ハンズオンと演習の区別
-- 講師から事前に案内する内容
-- 使用アカウント、AIモデル、プラン制限
-
-### 4. Markdownをレビューする
-
-「output」に作成されたMDを確認します。
-
-~~~text
-output/
-└ <course-name>_講座概要_作業プレビュー.md
-~~~
-
-確認対象は次のとおりです。
-
-- 講座の概要
-- 章構成
-- タイムテーブル
-- ポイント
-- 注意点
-- 合計時間
-- 演習名と受講生の実施時間
-- 使用ファイル名
-- 資料から確認できない情報の扱い
-
-### 5. DOCX化を承認する
-
-MDが確定したら、次のように依頼します。
-
-~~~text
-Markdownの内容を確定します。DOCXへ変換し、レイアウトを確認してください。
-問題がなければoutputへ保存してください。
-~~~
-
-SkillはDOCXを生成し、ページ画像またはPDFへレンダリングして、表、改ページ、見出し、余白を確認します。
-
-### 6. Google Driveへ保存する
-
-Google Drive連携が利用できる場合は、保存先フォルダを指定してアップロードします。連携がない場合は、「output」に作成されたDOCXを利用者が手動でアップロードします。
-
-## 成果物の例
-
-~~~text
-output/
-├ <course-name>_講座概要_作業プレビュー.md
-└ <course-name>_講座概要.docx
-~~~
-
-必要に応じて、検証用PDFやページ画像を一時的に作成します。一時ファイルは完成物と分けて管理します。
-
-## 更新方法
-
-リポジトリをクローンしてシンボリックリンクで使用している場合は、対象リポジトリで更新を取得します。
-
-~~~bash
+git switch main
 git pull --ff-only
 ~~~
 
-コピーして使用している場合は、新版の内容を確認してからSkillフォルダを更新します。既存フォルダを削除または上書きする前に、自分で加えた変更がないか確認してください。
-
-Codexが変更を認識しない場合は、Codexを再起動します。
+更新が認識されない場合はCodexを再起動します。
 
 ## トラブル時の確認
 
-### Skillが候補に出ない
+### Skillが表示されない
 
-- GitHubの招待を承認し、リポジトリを閲覧できるか確認する。
-- cloneまたはZIP展開が最後まで完了しているか確認する。
-- Skillフォルダ直下に「SKILL.md」があるか確認する。
-- 「SKILL.md」にnameとdescriptionがあるか確認する。
-- 配置先が「.agents/skills」配下になっているか確認する。
+- インストール結果にエラーがなかったか確認する。
+- URLがSkillフォルダまで含まれているか確認する。
+- `/skills`または`$course-overview-generator`で検索する。
 - Codexを再起動する。
 
 ### PDFやワークファイルを読めない
 
-- 指定したパスが現在の作業フォルダから参照できるか確認する。
-- ファイルが破損していないか、暗号化されていないか確認する。
-- Driveリンクの場合は、利用中のアカウントと閲覧権限を確認する。
+- ファイルパスが正しいか確認する。
+- Codexから読み取れる作業フォルダ内にあるか確認する。
+- Google Driveの場合は、接続と閲覧権限を確認する。
 
 ### DOCXを作成できない
 
-- Pythonと必要ライブラリが導入されているか確認する。
-- 生成スクリプトの実行ログを確認する。
-- MDを確定する前にDOCX化を依頼していないか確認する。
+- MDの内容を明示的に承認したか確認する。
+- 出力先への書き込み権限を確認する。
+- DOCX作成後のレイアウト確認まで依頼しているか確認する。
 
-### 出力内容が別講座と混ざる
+### 別講座の情報が混ざる
 
-- 講座ごとに新しい作業フォルダと会話を使用する。
-- 過去講座の資料が「input」に残っていないか確認する。
-- サンプル内の講座固有情報を共通ルールとして扱っていないか確認する。
+- 講座ごとに新しい作業フォルダを使用する。
+- 過去講座の入力ファイルが`input`に残っていないか確認する。
+- サンプルの固有情報を新しい講座へ流用していないか確認する。
 
 ## 公式情報
 

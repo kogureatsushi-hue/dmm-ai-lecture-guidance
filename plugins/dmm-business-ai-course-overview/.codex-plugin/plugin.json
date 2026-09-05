@@ -1,6 +1,6 @@
 {
   "name": "dmm-business-ai-course-overview",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "講座資料PDFとワーク使用ファイルから、講師向けの講座概要を作成するプラグイン",
   "author": {
     "name": "DMMビジネスAI研修"
