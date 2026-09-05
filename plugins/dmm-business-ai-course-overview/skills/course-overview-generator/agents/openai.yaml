@@ -1,0 +1,4 @@
+interface:
+  display_name: "講座概要作成"
+  short_description: "講座PDFとワーク使用ファイルから講師向け講座概要を作成"
+  default_prompt: "Use $course-overview-generator to create a Japanese course overview from the attached PDF and work files."

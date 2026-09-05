@@ -1,0 +1,20 @@
+{
+  "name": "dmm-business-ai-course-overview",
+  "version": "0.1.0",
+  "description": "講座資料PDFとワーク使用ファイルから、講師向けの講座概要を作成するプラグイン",
+  "author": {
+    "name": "DMMビジネスAI研修"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DMMビジネスAI研修｜講座概要作成プラグイン",
+    "shortDescription": "講座資料から講師向けの講座概要を作成",
+    "longDescription": "講座資料PDFとワーク使用ファイルを確認し、講師向けの講座概要をMarkdownで作成します。内容承認後はWord形式へ変換し、指定された保存先へ出力します。",
+    "developerName": "DMMビジネスAI研修",
+    "category": "Productivity",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "添付した講座PDFとワーク使用ファイルから、講座概要を作成してください。"
+    ]
+  }
+}
