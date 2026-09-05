@@ -1,8 +1,8 @@
-# ローカルCodexでの使い方
+# Codexでの使い方
 
 ## この文書について
 
-公開GitHubリポジトリから「講座概要作成」Skillを導入し、Codex CLI、IDE拡張、またはChatGPTデスクトップアプリのCodexで使用する手順です。本プロジェクトでは、この方法を標準の利用方法とします。
+公開GitHubリポジトリから「講座概要作成」Skillをインストールし、Codexで講座概要を作成する手順です。初めて利用する方は、上から順に進めてください。
 
 - リポジトリ：`https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance`
 - Skill ID：`course-overview-generator`
@@ -15,7 +15,7 @@
 - 講座資料PDFとワーク使用ファイルを閲覧できること
 - DOCXを作成する場合は、成果物を保存できる作業フォルダがあること
 
-Publicリポジトリのため、GitHubアカウントへの招待は不要です。Skillを利用するだけなら、リポジトリへの書き込み権限も必要ありません。
+Skillは、以下の公開URLをCodexへ伝えてインストールします。
 
 ## 推奨：Skill Installerで導入する
 

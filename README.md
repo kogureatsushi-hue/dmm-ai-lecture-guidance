@@ -48,7 +48,7 @@ $course-overview-generator を使って、講座概要を作成してくださ�
 不明な演習時間や講座固有の条件は、推測せず質問してください。
 ~~~
 
-詳しい操作は[ローカルCodexでの使い方](docs/ローカルCodexでの使い方.md)を確認してください。
+詳しい操作は[Codexでの使い方](docs/Codexでの使い方.md)を確認してください。
 
 ## 利用方法の選び方
 
@@ -108,7 +108,7 @@ GitHubリポジトリはPublicです。閲覧・ダウンロードにGitHubか�
 
 ## 関連文書
 
-- [ローカルCodexでの使い方](docs/ローカルCodexでの使い方.md)
+- [Codexでの使い方](docs/Codexでの使い方.md)
 - [ChatGPT Workでの使い方](docs/ChatGPT-Workでの使い方.md)
 - [Skill更新手順](docs/Skill更新手順.md)
 - [初回登録チェックリスト](docs/初回登録チェックリスト.md)
