@@ -22,6 +22,7 @@ description: 講座資料PDFとGoogle Drive上またはローカルのワーク�
 2. 講座概要を作成するときは、[course-overview-format.md](references/course-overview-format.md)を読む。
 3. タイムテーブルを作成・修正するときは、[timetable-rules.md](references/timetable-rules.md)を読む。
 4. ユーザーへの質問、MD確認、Word変換、保存を行うときは、[question-and-approval-gates.md](references/question-and-approval-gates.md)を読む。
+5. Wordへ変換するときは、[word-template-rules.md](references/word-template-rules.md)を読む。
 
 ## 作業フロー
 
@@ -64,7 +65,9 @@ description: 講座資料PDFとGoogle Drive上またはローカルのワーク�
 ### 6. 承認後にWordへ変換する
 
 - ユーザーがMDの内容を承認するまで、Word変換や外部保存を行わない。
-- Word作成では文書作成機能を使用し、表の改ページ、見出し階層、余白、文字切れを確認する。
+- [course-overview-template.docx](assets/course-overview-template.docx)をレイアウトの正本として使用し、[word-template-rules.md](references/word-template-rules.md)に従う。
+- 新しい文書テンプレートを選択する処理やArtifact Template Pickerを起動しない。
+- 承認済みMDの内容へ全置換し、テンプレート内の講座固有情報を残さない。
 - Wordをレンダリングして全ページを確認し、レイアウト不良を修正する。
 - 指定のGoogle Driveフォルダへ保存する場合は、Google Drive連携を使用する。
 
@@ -87,4 +90,5 @@ description: 講座資料PDFとGoogle Drive上またはローカルのワーク�
 - 仮置き時間と確定時間を区別できる。
 - 講師が事前に伝える事項と、進行中の注意点が具体的に書かれている。
 - PDFとワーク使用ファイルの不一致が注意点に記載されている。
+- Wordが同梱テンプレートのレイアウトを維持している。
 - MD承認後にのみWordが作成され、指定先へ保存されている。

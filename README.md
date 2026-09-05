@@ -6,7 +6,7 @@
 - 標準の利用環境：Codex CLI／IDE拡張／ChatGPTデスクトップアプリのCodex
 - 補助的な利用環境：ChatGPT Work（ワークスペース管理者による登録が必要）
 - Skill ID：`course-overview-generator`
-- バージョン：0.1.1
+- バージョン：0.1.2
 
 ## できること
 
@@ -27,6 +27,8 @@ Codexを開き、次のように依頼します。
 $skill-installer を使って、次の公開リポジトリからSkillをインストールしてください。
 https://github.com/kogureatsushi-hue/dmm-ai-lecture-guidance/tree/main/plugins/dmm-business-ai-course-overview/skills/course-overview-generator
 ~~~
+
+このPublicリポジトリからSkillをインストールして使用するだけなら、GitHubアカウントは必要ありません。
 
 インストール後、次のターンでSkillを利用できます。候補に表示されない場合はCodexを再起動してください。
 
