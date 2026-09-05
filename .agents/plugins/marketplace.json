@@ -1,0 +1,20 @@
+{
+  "name": "personal",
+  "interface": {
+    "displayName": "DMMビジネスAI研修"
+  },
+  "plugins": [
+    {
+      "name": "dmm-business-ai-course-overview",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dmm-business-ai-course-overview"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
